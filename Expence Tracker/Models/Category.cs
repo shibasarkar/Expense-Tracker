@@ -13,5 +13,13 @@ namespace Expence_Tracker.Models
         public string Icon { get; set; } = "";
         [Column(TypeName = "Nvarchar(50)")]
         public string Type { get; set; } = "Expense";
+        [NotMapped]
+        public string? TitleWithIcon
+        {
+            get
+            {
+                return Title +" "+Icon;
+            }
+        }
     }
 }
