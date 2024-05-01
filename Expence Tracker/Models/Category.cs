@@ -18,7 +18,7 @@ namespace Expence_Tracker.Models
         {
             get
             {
-                return Title +" "+Icon;
+                return  Icon+" "+ Title;
             }
         }
     }
