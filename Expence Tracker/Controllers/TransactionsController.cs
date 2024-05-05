@@ -46,11 +46,18 @@ namespace Expence_Tracker.Controllers
         //}
         #endregion
         // GET: Transactions/CreateOrEdit
-        public IActionResult CreateOrEdit()
+        public IActionResult CreateOrEdit(int id)
         {
             PopulateCategory();
             //ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryId");
-            return View(new Transactions());
+            if(id == 0)
+            {
+                return View(new Transactions());
+            }
+            else
+            {
+                return View(_context.Transactions.Find(id));
+            }
         }
 
         // POST: Transactions/CreateOrEdit
@@ -62,7 +69,14 @@ namespace Expence_Tracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(transactions);
+                if(transactions.TransactionId == 0)
+                {
+                    _context.Add(transactions);
+                }
+                else
+                {
+                    _context.Update(transactions);
+                }
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

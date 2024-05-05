@@ -8,6 +8,7 @@ namespace Expence_Tracker.Models
         [Key]
         public int CategoryId { get; set; }
         [Column(TypeName = "Nvarchar(50)")]
+        [Required(ErrorMessage ="This is a Required field!")]
         public string Title { get; set; }
         [Column(TypeName = "Nvarchar(50)")]
         public string Icon { get; set; } = "";
